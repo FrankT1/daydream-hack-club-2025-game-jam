@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Daydream Hack Club 2025 Game Jam"
-run/main_scene="uid://crajg5h3iquui"
+run/main_scene="uid://cmfoog8qtf2gb"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 

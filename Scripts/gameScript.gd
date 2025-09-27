@@ -1,10 +1,23 @@
 extends Node
 
 @export var snakeDir = 0 # 0 up 1 right, etc.
+@export var snakeLen = 1
+@export var gridSize = 128
 
+@export var player: Node2D
+
+func move(dir : Vector2):
+	player.position += (dir * gridSize)
 
 func gameTick():
-	pass	
+	if snakeDir == 0:
+		move(Vector2(0, -1))
+	elif snakeDir == 1:
+		move(Vector2(1, 0))
+	elif snakeDir == 2:
+		move(Vector2(0, 1))
+	elif snakeDir == 3:
+		move(Vector2(-1, 0))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
