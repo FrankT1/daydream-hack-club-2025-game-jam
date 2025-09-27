@@ -12,9 +12,11 @@ extends Node
 
 func move(dir : Vector2):
 	player.position += (dir * gridSize)
+
+func end():
+	$CanvasLayer/End.visible = true
+	Engine.time_scale = 0
 	
-
-
 
 func gameTick():
 	if snakeDir == 0:
@@ -30,6 +32,8 @@ func gameTick():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$CanvasLayer/Control/Label.text = "Health: " + str(health)
+	if health <= 0:
+		end()
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Up"):
@@ -47,7 +51,7 @@ func _input(event: InputEvent) -> void:
 	
 func _ready() -> void:
 	$Tick.timeout.connect(gameTick)
-	print("a")
-	$game/Player/Body.body_entered.connect(func(body):
-		print("collide")
+	$game/Player/Area2D.area_entered.connect(func(area : Area2D):
+		health -= 10
+	
 	)

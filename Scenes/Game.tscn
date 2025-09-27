@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cxwjxl53f0j5y" path="res://Scripts/gameScript.gd" id="1_iukft"]
 [ext_resource type="Texture2D" uid="uid://ba8j4wg55k7sr" path="res://Assets/Player/segment.svg" id="2_gl6un"]
 [ext_resource type="Texture2D" uid="uid://b0wcvlvq6vwl4" path="res://Assets/icon.svg" id="3_j5yw3"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j5yw3"]
+[ext_resource type="Script" uid="uid://q5mye5evn14i" path="res://Scenes/quit.gd" id="4_kldst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5yw3"]
 size = Vector2(128, 128)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kldst"]
+[sub_resource type="LabelSettings" id="LabelSettings_b2bpf"]
+font_size = 64
 
 [node name="Node" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_iukft")
@@ -27,11 +27,9 @@ remote_path = NodePath("../../../Camera2D")
 
 [node name="Node2D" type="Node2D" parent="game/Player"]
 
-[node name="Body" type="RigidBody2D" parent="game/Player"]
-physics_material_override = SubResource("PhysicsMaterial_j5yw3")
-contact_monitor = true
+[node name="Area2D" type="Area2D" parent="game/Player"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="game/Player/Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="game/Player/Area2D"]
 shape = SubResource("RectangleShape2D_j5yw3")
 
 [node name="BG" type="Sprite2D" parent="game"]
@@ -47,11 +45,9 @@ position = Vector2(500, 0)
 [node name="Sprite2D" type="Sprite2D" parent="game/Mobs/Mob"]
 texture = ExtResource("2_gl6un")
 
-[node name="Body" type="RigidBody2D" parent="game/Mobs/Mob"]
-physics_material_override = SubResource("PhysicsMaterial_kldst")
-contact_monitor = true
+[node name="Kill" type="Area2D" parent="game/Mobs/Mob"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="game/Mobs/Mob/Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="game/Mobs/Mob/Kill"]
 shape = SubResource("RectangleShape2D_j5yw3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -78,3 +74,40 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Health"
+
+[node name="End" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/End"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Lose!"
+label_settings = SubResource("LabelSettings_b2bpf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/End"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.6
+anchor_right = 0.6
+anchor_bottom = 0.6
+offset_left = -21.0
+offset_top = -15.5
+offset_right = 21.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+script = ExtResource("4_kldst")
