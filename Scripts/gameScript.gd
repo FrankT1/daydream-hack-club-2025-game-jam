@@ -35,6 +35,8 @@ func spawnTick():
 	$game/Mobs.add_child(newmob)
 	var dir = [-1, 1].pick_random()
 	newmob.position = Vector2(dir * 5 * gridSize, randi_range(-4, 4) * gridSize)
+	if dir == -1:
+		newmob.get_node("Sprite2D").flip_h = true
 	var tw = create_tween().tween_property(newmob, "position", Vector2(gridSize * 8 * dir * -1, newmob.position.y), randf_range(2, 10))
 	tw.finished.connect(func():
 		newmob.queue_free()
