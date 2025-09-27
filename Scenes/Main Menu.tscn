@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci458amok2o30"]
+[gd_scene load_steps=2 format=3 uid="uid://8ck0fmq2fru3"]
 
-[ext_resource type="Script" path="res://Scenes/button.gd" id="1_c4tk2"]
+[ext_resource type="Script" uid="uid://dw536b23mcdvy" path="res://Scripts/button.gd" id="1_totuj"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,4 +33,4 @@ anchor_bottom = 0.4
 grow_horizontal = 2
 grow_vertical = 2
 text = "GO!"
-script = ExtResource("1_c4tk2")
+script = ExtResource("1_totuj")
