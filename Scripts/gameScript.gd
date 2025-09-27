@@ -37,11 +37,16 @@ func spawnTick():
 	$game/Mobs.add_child(newmob)
 	var dir = [-1, 1].pick_random()
 	newmob.position = Vector2(dir * 5 * gridSize, randi_range(-4, 4) * gridSize)
+	newmob.get_node("Kill").area_entered.connect(func(area : Area2D):
+		if area.name == "Player":
+			newmob.queue_free()
+	)
 	if dir == -1:
 		newmob.get_node("Sprite2D").flip_h = true
 	var tw = create_tween().tween_property(newmob, "position", Vector2(gridSize * 8 * dir * -1, newmob.position.y), randf_range(2, 10))
 	tw.finished.connect(func():
-		newmob.queue_free()
+		if newmob:
+			newmob.queue_free()
 		)
 	
 	
@@ -88,6 +93,6 @@ func _ready() -> void:
 	)
 	
 	
-	$game/Player/Area2D.area_entered.connect(func(area : Area2D):
+	$game/Player/Player.area_entered.connect(func(area : Area2D):
 		health -= 10
 	)
