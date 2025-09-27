@@ -3,11 +3,18 @@ extends Node
 @export var snakeDir = 0 # 0 up 1 right, etc.
 @export var snakeLen = 1
 @export var gridSize = 128
+@export var health = 100
+
 
 @export var player: Node2D
 
+
+
 func move(dir : Vector2):
 	player.position += (dir * gridSize)
+	
+
+
 
 func gameTick():
 	if snakeDir == 0:
@@ -22,7 +29,7 @@ func gameTick():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$CanvasLayer/Control/Label.text = "Health: " + str(health)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Up"):
@@ -33,6 +40,8 @@ func _input(event: InputEvent) -> void:
 		snakeDir = 2
 	elif event.is_action_pressed("Left"):
 		snakeDir = 3
+	if event.is_action_pressed("TEST"):
+		pass
 	print(snakeDir)
 	
 	

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmfoog8qtf2gb"]
+[gd_scene load_steps=5 format=3 uid="uid://cmfoog8qtf2gb"]
 
 [ext_resource type="Script" uid="uid://cxwjxl53f0j5y" path="res://Scripts/gameScript.gd" id="1_iukft"]
 [ext_resource type="Texture2D" uid="uid://ba8j4wg55k7sr" path="res://Assets/Player/segment.svg" id="2_gl6un"]
 [ext_resource type="Texture2D" uid="uid://b0wcvlvq6vwl4" path="res://Assets/icon.svg" id="3_j5yw3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5yw3"]
+size = Vector2(128, 128)
 
 [node name="Node" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_iukft")
@@ -21,28 +24,37 @@ remote_path = NodePath("../../../Camera2D")
 
 [node name="Node2D" type="Node2D" parent="game/Player"]
 
+[node name="StaticBody2D" type="StaticBody2D" parent="game/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="game/Player/StaticBody2D"]
+shape = SubResource("RectangleShape2D_j5yw3")
+
 [node name="BG" type="Sprite2D" parent="game"]
 z_index = -100
-position = Vector2(210.99994, 116.49997)
-scale = Vector2(16.671873, 11.2578125)
+scale = Vector2(10, 10)
 texture = ExtResource("3_j5yw3")
 
-[node name="Segment" type="Node2D" parent="game"]
-
-[node name="Sprite2D" type="Sprite2D" parent="game/Segment"]
-texture = ExtResource("2_gl6un")
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="Tick" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Health"
