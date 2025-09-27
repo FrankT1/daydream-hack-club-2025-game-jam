@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl1wtw88824px"
-path="res://.godot/imported/Player_injured.png-487b6ee5a74569a84cbdf7c46c2a47b4.ctex"
+uid="uid://l2x3a7hpixcw"
+path="res://.godot/imported/Player_heal.png-f9644bd9dd0fcd24551673d343736d0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player_injured.png"
-dest_files=["res://.godot/imported/Player_injured.png-487b6ee5a74569a84cbdf7c46c2a47b4.ctex"]
+source_file="res://Assets/Player_heal.png"
+dest_files=["res://.godot/imported/Player_heal.png-f9644bd9dd0fcd24551673d343736d0f.ctex"]
 
 [params]
 
