@@ -19,10 +19,6 @@ config/icon="res://Assets/icon.svg"
 
 Globalscript="*res://Scripts/globalscript.gd"
 
-[display]
-
-window/stretch/mode="viewport"
-
 [dotnet]
 
 project/assembly_name="Daydream Hack Club 2025 Game Jam"
