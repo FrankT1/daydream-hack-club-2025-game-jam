@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ht44kh6aerg"]
+
+[ext_resource type="Texture2D" uid="uid://inha72gar7cr" path="res://Assets/Player_hurt.png" id="1_qxaii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5yw3"]
+size = Vector2(110, 110)
+
+[node name="Mob" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-14.500017, -10.999993)
+scale = Vector2(2.546875, 2.34375)
+texture = ExtResource("1_qxaii")
+
+[node name="Kill" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kill"]
+shape = SubResource("RectangleShape2D_j5yw3")
