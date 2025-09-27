@@ -24,10 +24,12 @@ func gameTick():
 		move(Vector2(0, -1))
 	elif snakeDir == 1:
 		move(Vector2(1, 0))
+		$game/Player/Sprite2D.flip_h = true
 	elif snakeDir == 2:
 		move(Vector2(0, 1))
 	elif snakeDir == 3:
 		move(Vector2(-1, 0))
+		$game/Player/Sprite2D.flip_h = false
 
 func spawnTick():
 	score += 10
@@ -73,6 +75,19 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	$Tick.timeout.connect(gameTick)
 	$SpawnTick.timeout.connect(spawnTick)
+	
+	$CanvasLayer/Control/SacHealth.pressed.connect(func():
+		if health >= 10:
+			health -= 10
+			score += 20
+	)
+	$CanvasLayer/Control/SacScore.pressed.connect(func():
+		if score >= 100:
+			score -= 100
+			health += 5
+	)
+	
+	
 	$game/Player/Area2D.area_entered.connect(func(area : Area2D):
 		health -= 10
 	)
