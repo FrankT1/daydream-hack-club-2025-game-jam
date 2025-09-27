@@ -5,6 +5,7 @@ extends Node
 @export var gridSize = 128
 @export var health = 100
 @export var score = 0
+@export var started = false
 
 @export var player: Node2D
 
@@ -12,6 +13,7 @@ var mob = "res://Assets/mob.tscn"
 
 
 func move(dir : Vector2):
+	
 	player.position += (dir * gridSize)
 
 func end():
@@ -31,8 +33,15 @@ func gameTick():
 		move(Vector2(-1, 0))
 		$game/Player/Sprite2D.flip_h = false
 
+func diffTick():
+	if $SpawnTick.wait_time >= 0.02:
+		$SpawnTick.wait_time -= 0.005
+ 	
 func spawnTick():
-	score += 10
+	if health < 100:
+		health += 5
+	
+	# score += 10
 	var newmob : Node2D = preload("res://Assets/mob.tscn").instantiate()
 	$game/Mobs.add_child(newmob)
 	var dir = [-1, 1].pick_random()
@@ -61,31 +70,39 @@ func _process(delta: float) -> void:
 		health = 0
 	if health <= 0:
 		end()
-	
-	
+func sacHealth():
+		if health >= 10:
+			health -= 10
+			score += 50
+func startmove():
+	if not started:
+		$Tick.start()
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Up"):
 		snakeDir = 0
+		startmove()
 	elif event.is_action_pressed("Right"):
 		snakeDir = 1
+		startmove()
 	elif event.is_action_pressed("Down"):
 		snakeDir = 2
+		startmove()
 	elif event.is_action_pressed("Left"):
 		snakeDir = 3
+		startmove()
+	if event.is_action_pressed("Space"):
+		sacHealth()
 	if event.is_action_pressed("TEST"):
 		pass
-	print(snakeDir)
 	
 	
 func _ready() -> void:
 	$Tick.timeout.connect(gameTick)
 	$SpawnTick.timeout.connect(spawnTick)
+	$DifficultyTick.timeout.connect(diffTick)
 	
-	$CanvasLayer/Control/SacHealth.pressed.connect(func():
-		if health >= 10:
-			health -= 10
-			score += 20
-	)
+	$CanvasLayer/Control/SacHealth.pressed.connect(sacHealth)
 	$CanvasLayer/Control/SacScore.pressed.connect(func():
 		if score >= 100:
 			score -= 100

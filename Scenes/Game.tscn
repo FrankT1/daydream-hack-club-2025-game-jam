@@ -93,6 +93,7 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_bf53h"]
 font = ExtResource("4_7lihs")
+font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_b2bpf"]
 font = ExtResource("5_7lihs")
@@ -111,9 +112,6 @@ position = Vector2(1.9073486e-06, 1.9073486e-06)
 scale = Vector2(2, 2)
 texture = ExtResource("2_kldst")
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="game/Player"]
-visible = false
-
 [node name="Node2D" type="Node2D" parent="game/Player"]
 
 [node name="Player" type="Area2D" parent="game/Player"]
@@ -130,7 +128,7 @@ tile_set = SubResource("TileSet_fgofq")
 
 [node name="BackgroundIngame" type="Sprite2D" parent="game"]
 z_index = -25
-position = Vector2(-53, 14.000004)
+position = Vector2(-6, 4)
 scale = Vector2(2.0380688, 3.1790125)
 texture = ExtResource("4_fgofq")
 
@@ -140,7 +138,6 @@ position_smoothing_speed = 3.0
 
 [node name="Tick" type="Timer" parent="."]
 wait_time = 0.25
-autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -173,9 +170,9 @@ label_settings = SubResource("LabelSettings_2irst")
 [node name="SacHealth" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.55
-anchor_top = 0.76
-anchor_right = 0.65
+anchor_left = 0.75
+anchor_top = 0.9
+anchor_right = 0.85
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -189,18 +186,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "- 10 Health
-+ 20 score"
+text = "(space)
+- 10 Health
++ 50 score"
 label_settings = SubResource("LabelSettings_bf53h")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SacScore" type="Button" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.65
-anchor_top = 0.76
-anchor_right = 0.75
+anchor_left = 0.85
+anchor_top = 0.9
+anchor_right = 0.95
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -258,5 +257,6 @@ text = "Quit"
 script = ExtResource("4_kldst")
 
 [node name="SpawnTick" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
+
+[node name="DifficultyTick" type="Timer" parent="."]
