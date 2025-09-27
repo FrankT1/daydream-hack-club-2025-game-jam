@@ -47,6 +47,7 @@ func _input(event: InputEvent) -> void:
 	
 func _ready() -> void:
 	$Tick.timeout.connect(gameTick)
-	player.get_node("Body").on_Area2D_area_entered.connect(func():
+	print("a")
+	$game/Player/Body.body_entered.connect(func(body):
 		print("collide")
-		)
+	)
