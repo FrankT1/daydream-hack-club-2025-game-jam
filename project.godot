@@ -14,6 +14,10 @@ config/name="Daydream Hack Club 2025 Game Jam"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
+[dotnet]
+
+project/assembly_name="Daydream Hack Club 2025 Game Jam"
+
 [file_customization]
 
 folder_colors={
